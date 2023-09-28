@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const verifyToken = require('./middlewares/verifyToken');
 
 const routes = require('./routes/routes');
+const tokenBlacklist = require('./middlewares/tokenBlackList');
 const app = express();
 
 app.use(cors());
@@ -13,7 +14,6 @@ app.use(cors());
  * Serve static files in public directory
  */
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.urlencoded({ extended:false }));
 
 // To parse JSON data
@@ -35,7 +35,16 @@ app.get('/protected', verifyToken, (req, res) => {
   res.send('This is a protected route!');
 });
 
-app.use((req, res) => { res.send("Page Not Found")});
+// Logout route
+app.post('/logout', (req, res) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) return res.status(401).send('Access Denied');
+
+  tokenBlacklist.push(token);
+  res.send('Logged out successfully');
+});
+
+//app.use((req, res) => { res.send("Page Not Found")});
 
 app.listen(5001, () => {
   console.log("Heard on 5001");

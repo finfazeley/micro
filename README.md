@@ -37,6 +37,11 @@ I recommend using `npm ci` because this will install the exact package versions 
     Output: Something like {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE0YzE5ZTk5YjZhZTg5NGI0ODQ3Y2MiLCJpYXQiOjE2OTU4NjE0ODgsImV4cCI6MTY5NTg2NTA4OH0.hvlqMqk9OSxGO0MrBa7xPLvTBx5yc8UviQXmk3BTIMU"}
 
 ### 3. Copy the token from the response of the login request and use it to access the protected route: 
-    Command: curl -H "Authorization: Bearer <token> " http://localhost:5001/protected; echo
+    Command: curl -H "Authorization: Bearer <token>" http://localhost:5001/protected; echo
 
     Example: curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE0YzE5ZTk5YjZhZTg5NGI0ODQ3Y2MiLCJpYXQiOjE2OTU4NTk2MjksImV4cCI6MTY5NTg2MzIyOX0.36m_RUvp_F6m7Oq-mt9RAz6FNeiEDPFCgXnFxZT4ids" http://localhost:5001/protected; echo
+
+### 4. Logout: 
+    Command: curl -X POST -H "Authorization: Bearer <token>" http://localhost:5001/logout; echo
+
+    Example: curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE0YzE5ZTk5YjZhZTg5NGI0ODQ3Y2MiLCJpYXQiOjE2OTU4NTk2MjksImV4cCI6MTY5NTg2MzIyOX0.36m_RUvp_F6m7Oq-mt9RAz6FNeiEDPFCgXnFxZT4ids" http://localhost:5001/logout; echo
