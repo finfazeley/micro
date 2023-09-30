@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
+require('dotenv').config();
 
 // serializeUser determines which data of the user object should be stored in the session when the user logs in.
 passport.serializeUser((user, done) => {

@@ -2,13 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-const verifyToken = require('./middlewares/verifyToken');
+const session = require('express-session');
 
 const routes = require('./routes/routes');
 const tokenBlacklist = require('./middlewares/tokenBlackList');
+const verifyToken = require('./middlewares/verifyToken');
+const googlePassport = require('./config/google_passport');
+const passport = require('passport');
+
 const app = express();
 
 app.use(cors());
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
 
 /**
  * Serve static files in public directory
@@ -20,6 +31,9 @@ app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 
 app.use('/', routes);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 /**
  * Set template engine to ejs
