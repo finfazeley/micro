@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const cookies = require('cookie-parser');
 const verifyToken = require('./middlewares/verifyToken');
 
 const routes = require('./routes/routes');
@@ -9,6 +10,7 @@ const tokenBlacklist = require('./middlewares/tokenBlackList');
 const app = express();
 
 app.use(cors());
+app.use(cookies());
 
 /**
  * Serve static files in public directory
