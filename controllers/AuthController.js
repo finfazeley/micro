@@ -1,6 +1,13 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const findUser =  require('../utils/findUserById');
+
+const navPages = [
+    { name: 'Home', url: '/', active: false },
+    { name: 'Sell', url: '/sell', active: false},
+    { name: 'Login', url: '/auth', active: true}
+  ]
 
 exports.register = async (req, res) => {
     try {
@@ -38,4 +45,19 @@ exports.login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+}
+
+exports.getAuthPage = (req, res, next) => {
+    const userID = req.user;
+  var login = true;
+  if(!userID || userID === undefined) {
+    login = false;
+  }
+  findUser(userID).then(user => {
+    res.render('auth', {
+      navPages: navPages,
+      login: login,
+      user: user
+    });
+  });
 }
