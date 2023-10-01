@@ -5,7 +5,14 @@ const navPages = [
 ]
 
 exports.getHomePage = (req, res, next) => {
+  const user = req.user;
+  var login = true;
+  if(!user || user === undefined) {
+    login = false;
+  }
   res.render('index', {
-    navPages: navPages
+    navPages: navPages,
+    login: login,
+    user: user
   });
 }

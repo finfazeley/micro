@@ -5,9 +5,10 @@ const AuthController = require('../controllers/AuthController');
 const ListingController = require('../controllers/ListingController');
 const HomeController = require('../controllers/HomeController');
 const verifyToken = require('../middlewares/verifyToken');
+const checkLogin = require('../middlewares/checkLogin');
 
 // Home //
-router.get('/', HomeController.getHomePage);
+router.get('/', checkLogin, HomeController.getHomePage);
 
 // Sell //
 router.get('/sell', verifyToken, ListingController.getSellPage);
