@@ -2,6 +2,12 @@ const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const verifyToken = require('../middlewares/verifyToken');
 
+const navPages = [
+  { name: 'Home', url: '/', active: false },
+  { name: 'Sell', url: '/sell', active: true},
+  { name: 'Login', url: '/auth', active: false}
+]
+
 exports.addcarlisting = async (req, res) => {
   try {
     const {make, model, year, mileage, description, price} = req.body;
@@ -12,4 +18,10 @@ exports.addcarlisting = async (req, res) => {
   } catch (err) {
     res.status(500).json({message: err.message});
   }
+}
+
+exports.getSellPage = (req, res, next) => {
+  res.render('sell', {
+    navPages: navPages
+  });
 }

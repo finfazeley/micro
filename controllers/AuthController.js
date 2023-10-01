@@ -2,6 +2,12 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const navPages = [
+    { name: 'Home', url: '/', active: false },
+    { name: 'Sell', url: '/sell', active: false},
+    { name: 'Login', url: '/auth', active: true}
+  ]
+
 exports.register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -38,4 +44,10 @@ exports.login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+}
+
+exports.getAuthPage = (req, res, next) => {
+    res.render('auth', {
+        navPages: navPages
+    })
 }

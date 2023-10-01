@@ -8,13 +8,9 @@ const verifyToken = require('../middlewares/verifyToken');
 
 router.get('/', HomeController.getHomePage);
 
-router.get('/auth', (req, res, next) => {
-  res.render('auth');
-})
+router.get('/auth', AuthController.getAuthPage);
 
-router.get('/sell', verifyToken, (req, res, next) => {
-  res.render('sell');
-})
+router.get('/sell', verifyToken, ListingController.getSellPage);
 
 router.post('/register', AuthController.register);
 router.post('/login', AuthController.login);
