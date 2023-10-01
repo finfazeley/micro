@@ -10,7 +10,6 @@ module.exports = (req, res, next) => {
 
     try {
         // Verify token
-        console.log("Verify");
         const verified = jwt.verify(token, 'YOUR_SECRET_KEY');
         req.user = verified.userId;
         next();
