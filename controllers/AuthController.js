@@ -55,7 +55,7 @@ exports.logout = (req, res) => {
         res.redirect('/');
     };
     tokenBlacklist.push(token);
-    res.redirect('/');
+    res.clearCookie('token').redirect('/');
 }
 
 exports.getAuthPage = (req, res, next) => {
