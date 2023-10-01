@@ -2,6 +2,8 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const findUser =  require('../utils/findUserById');
+const cookies = require('cookie-parser');
+const tokenBlacklist = require('../middlewares/tokenBlackList');
 
 const navPages = [
     { name: 'Home', url: '/', active: false },
@@ -45,6 +47,15 @@ exports.login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+}
+
+exports.logout = (req, res) => {
+    const token = req.cookies.token;
+    if (!token) {
+        res.redirect('/');
+    };
+    tokenBlacklist.push(token);
+    res.redirect('/');
 }
 
 exports.getAuthPage = (req, res, next) => {
