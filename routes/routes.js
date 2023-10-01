@@ -3,11 +3,10 @@ const router = express.Router();
 const path = require('path');
 const AuthController = require('../controllers/AuthController');
 const ListingController = require('../controllers/ListingController');
+const HomeController = require('../controllers/HomeController');
 const verifyToken = require('../middlewares/verifyToken');
 
-router.get('/', (req, res, next) => {
-  res.render('index');
-})
+router.get('/', HomeController.getHomePage);
 
 router.get('/auth', (req, res, next) => {
   res.render('auth');
