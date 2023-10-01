@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const cookies = require('cookie-parser');
 const verifyToken = require('./middlewares/verifyToken');
 
 const routes = require('./routes/routes');
@@ -9,6 +10,7 @@ const tokenBlacklist = require('./middlewares/tokenBlackList');
 const app = express();
 
 app.use(cors());
+app.use(cookies());
 
 /**
  * Serve static files in public directory
@@ -27,7 +29,7 @@ app.use('/', routes);
 app.set('view engine', 'ejs');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/TradeCarsDB', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://0.0.0.0:27017/TradeCarsDB', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
