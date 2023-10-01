@@ -1,3 +1,5 @@
+const User = require('../models/User');
+
 const navPages = [
   { name: 'Home', url: '/', active: true },
   { name: 'Sell', url: '/sell', active: false},
@@ -5,14 +7,21 @@ const navPages = [
 ]
 
 exports.getHomePage = (req, res, next) => {
-  const user = req.user;
+  const userID = req.user;
   var login = true;
-  if(!user || user === undefined) {
+  if(!userID || userID === undefined) {
     login = false;
   }
-  res.render('index', {
-    navPages: navPages,
-    login: login,
-    user: user
+  findUser(userID).then(user => {
+    res.render('index', {
+      navPages: navPages,
+      login: login,
+      user: user
+    });
   });
+}
+
+const findUser = async(userID) => {
+  const user = await User.findById(userID);
+  return user.username;
 }
