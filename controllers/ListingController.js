@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const CarListing = require('../models/CarListing');
-const verifyToken = require('../middlewares/verifyToken');
+const findUser =  require('../utils/findUserById');
 
 const navPages = [
   { name: 'Home', url: '/', active: false },
@@ -21,7 +21,16 @@ exports.addcarlisting = async (req, res) => {
 }
 
 exports.getSellPage = (req, res, next) => {
-  res.render('sell', {
-    navPages: navPages
+  const userID = req.user;
+  var login = true;
+  if(!userID || userID === undefined) {
+    login = false;
+  }
+  findUser(userID).then(user => {
+    res.render('sell', {
+      navPages: navPages,
+      login: login,
+      user: user
+    });
   });
 }

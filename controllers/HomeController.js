@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const findUser =  require('../utils/findUserById');
 
 const navPages = [
   { name: 'Home', url: '/', active: true },
@@ -19,9 +20,4 @@ exports.getHomePage = (req, res, next) => {
       user: user
     });
   });
-}
-
-const findUser = async(userID) => {
-  const user = await User.findById(userID);
-  return user.username;
 }

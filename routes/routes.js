@@ -11,11 +11,11 @@ const checkLogin = require('../middlewares/checkLogin');
 router.get('/', checkLogin, HomeController.getHomePage);
 
 // Sell //
-router.get('/sell', verifyToken, ListingController.getSellPage);
+router.get('/sell', verifyToken, checkLogin, ListingController.getSellPage);
 router.post('/addcar', [verifyToken, ListingController.addcarlisting])
 
 // Auth //
-router.get('/auth', AuthController.getAuthPage);
+router.get('/auth', checkLogin, AuthController.getAuthPage);
 router.post('/register', AuthController.register);
 router.post('/login', AuthController.login);
 

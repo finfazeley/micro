@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const findUser =  require('../utils/findUserById');
 
 const navPages = [
     { name: 'Home', url: '/', active: false },
@@ -47,7 +48,16 @@ exports.login = async (req, res) => {
 }
 
 exports.getAuthPage = (req, res, next) => {
+    const userID = req.user;
+  var login = true;
+  if(!userID || userID === undefined) {
+    login = false;
+  }
+  findUser(userID).then(user => {
     res.render('auth', {
-        navPages: navPages
-    })
+      navPages: navPages,
+      login: login,
+      user: user
+    });
+  });
 }
