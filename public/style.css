@@ -17,8 +17,8 @@ a {
   text-decoration: none;
 }
 
-input {
-
+a.active {
+  background-color: #b2b2b2;
 }
 
 .body {
@@ -43,11 +43,10 @@ input {
 
 .nav-wrapper {
   margin: auto;
-  width: 70%; 
+  width: 90%; 
 }
 
 .header ul {
-  display: inline-block;
   float: right;
   list-style: none;
   text-align: right;
@@ -64,7 +63,7 @@ input {
   letter-spacing: 1px;
   margin: 0px 1px;
   padding: 0px 5px;
-  border-radius: 5px;
+  border-radius: 2px;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
@@ -73,4 +72,10 @@ input {
 .header li a:hover {
   background-color: #a1a1a1;
   color: white;
+}
+
+.header li.login {
+  padding: 0px 5px;
+  margin-left: 5rem;
+  background-color: #a1a1a1;
 }

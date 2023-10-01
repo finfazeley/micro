@@ -51,15 +51,6 @@ app.get('/protected', verifyToken, (req, res) => {
   res.send('This is a protected route!');
 });
 
-// Logout route
-app.post('/logout', (req, res) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  if (!token) return res.status(401).send('Access Denied');
-
-  tokenBlacklist.push(token);
-  res.send('Logged out successfully');
-});
-
 //app.use((req, res) => { res.send("Page Not Found")});
 
 app.listen(5001, () => {
