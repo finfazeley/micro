@@ -6,15 +6,16 @@ const ListingController = require('../controllers/ListingController');
 const HomeController = require('../controllers/HomeController');
 const verifyToken = require('../middlewares/verifyToken');
 
+// Home //
 router.get('/', HomeController.getHomePage);
 
-router.get('/auth', AuthController.getAuthPage);
-
+// Sell //
 router.get('/sell', verifyToken, ListingController.getSellPage);
-
-router.post('/register', AuthController.register);
-router.post('/login', AuthController.login);
 router.post('/addcar', [verifyToken, ListingController.addcarlisting])
 
-module.exports = router;
+// Auth //
+router.get('/auth', AuthController.getAuthPage);
+router.post('/register', AuthController.register);
+router.post('/login', AuthController.login);
 
+module.exports = router;
