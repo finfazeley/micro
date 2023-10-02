@@ -79,3 +79,30 @@ a.active {
   margin-left: 5rem;
   background-color: #a1a1a1;
 }
+
+body h1 {
+  padding: 2rem;
+  text-decoration: underline;
+  color: #555555
+}
+
+body ul {
+  list-style-type: none;
+}
+
+body li {
+  display: flex;
+}
+
+body li a {
+  text-decoration: none;
+  padding: 15px 2rem;
+  margin-top: 5px;
+  margin-left: 2rem;
+  background-color: #a1a1a1;
+  border-radius: 2px;
+}
+
+body li a:hover {
+  background-color: #888888;
+}
