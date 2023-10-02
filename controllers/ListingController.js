@@ -34,3 +34,25 @@ exports.getSellPage = (req, res, next) => {
     });
   });
 }
+
+// Utility Functions
+
+exports.getAllListings = async () => {
+  const listings = await CarListing.find().cursor().toArray();
+  var newListings = [];
+  for await (const list of listings) {
+    await User.findById(list.user.toHexString()).then(res => {
+      newList = {
+        user: res.username,
+        make: list.make,
+        model: list.model,
+        year: list.year,
+        mileage: list.mileage,
+        description: list.description,
+        price: list.price
+      }
+      newListings.push(newList);
+    });
+  }
+  return newListings;
+}
