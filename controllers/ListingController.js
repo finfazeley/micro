@@ -43,6 +43,7 @@ exports.getAllListings = async () => {
   for await (const list of listings) {
     await User.findById(list.user.toHexString()).then(res => {
       newList = {
+        id: list._id.toHexString(),
         user: res.username,
         make: list.make,
         model: list.model,
@@ -54,5 +55,6 @@ exports.getAllListings = async () => {
       newListings.push(newList);
     });
   }
+  console.log(newListings);
   return newListings;
 }
