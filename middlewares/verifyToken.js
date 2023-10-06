@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const tokenBlacklist = require('./tokenBlackList');
 const cookies = require('cookie-parser');
+require('dotenv').config();
 
 module.exports = (req, res, next) => {
     // Get token from header
@@ -13,7 +14,7 @@ module.exports = (req, res, next) => {
 
     try {
         // Verify token
-        const verified = jwt.verify(token, 'YOUR_SECRET_KEY');
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = verified.userId;
         next();
     }

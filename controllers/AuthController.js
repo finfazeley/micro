@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
         if (!validPassword) return res.status(401).json({ message: 'Incorrect password' });
 
         // If passwords do match, create and send a token
-        const token = jwt.sign({ userId: user._id }, 'YOUR_SECRET_KEY', { expiresIn: '1h' });;
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie("token", token, {
             httpOnly: true,
         })
