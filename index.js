@@ -5,9 +5,21 @@ const mongoose = require('mongoose');
 const cookies = require('cookie-parser');
 const verifyToken = require('./middlewares/verifyToken');
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAgq70Lms32HDUnLK43IIBDu22KdzC8_EU",
+//   authDomain: "nwen304-23.firebaseapp.com",
+//   projectId: "nwen304-23",
+//   storageBucket: "nwen304-23.appspot.com",
+//   messagingSenderId: "638909197225",
+//   appId: "1:638909197225:web:e2d400f868180049a8b2b8",
+//   measurementId: "G-18J2WYQR10"
+// };
+
 const routes = require('./routes/routes');
 const tokenBlacklist = require('./middlewares/tokenBlackList');
 const app = express();
+
+// firebase.initializeApp(firebaseConfig);
 
 app.use(cors());
 app.use(cookies());
@@ -58,3 +70,16 @@ app.listen(5001, () => {
     console.log(err);
   }
 });
+
+
+// Import the functions you need from the SDKs you need
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
+// Initialize Firebase
+
