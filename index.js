@@ -26,7 +26,7 @@ app.use(session({
 /**
  * Serve static files in public directory
  */
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/styles')));
 app.use(express.urlencoded({ extended:false }));
 
 // To parse JSON data

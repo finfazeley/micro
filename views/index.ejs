@@ -3,6 +3,13 @@
 <div class="body">
   <title>Trade Cars</title>
   <h1 className="listings-heading">Car Listings</h1>
+  <div className="listings">
+    <ul>
+      <% for (var car in listings) { %>
+        <li><a href=<%= '/product/'+listings[car].id %>><%= listings[car].make %>: <%= listings[car].model %></a></li>
+      <% } %>
+    </ul>
+  </div>
 </div>
 
 <link href="/style.css" rel="stylesheet" type="text/css">
