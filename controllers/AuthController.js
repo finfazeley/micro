@@ -51,12 +51,16 @@ exports.login = async (req, res) => {
 }
 
 exports.logout = (req, res) => {
+    req.session.destroy();
+
     const token = req.cookies.token;
-    if (!token) {
-        res.redirect('/');
-    };
-    tokenBlacklist.push(token);
-    res.clearCookie('token').redirect('/');
+    if (token) {
+        tokenBlacklist.push(token);
+        res.clearCookie('token');
+    }
+
+    res.redirect('/');
+    
 }
 
 exports.getAuthPage = (req, res, next) => {
