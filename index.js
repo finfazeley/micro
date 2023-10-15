@@ -6,8 +6,6 @@ const session = require('express-session');
 const cookies = require('cookie-parser');
 
 const routes = require('./routes/routes');
-const tokenBlacklist = require('./middlewares/tokenBlackList');
-const verifyToken = require('./middlewares/verifyToken');
 const googlePassport = require('./config/google_passport');
 const passport = require('passport');
 
@@ -16,12 +14,15 @@ const app = express();
 app.use(cors());
 app.use(cookies());
 
+// Session setup
 app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: false
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 /**
  * Serve static files in public directory
@@ -34,8 +35,6 @@ app.use(express.json());
 
 app.use('/', routes);
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 /**
  * Set template engine to ejs
@@ -47,9 +46,9 @@ mongoose.connect('mongodb://0.0.0.0:27017/TradeCarsDB', { useNewUrlParser: true,
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
-app.get('/protected', verifyToken, (req, res) => {
-  res.send('This is a protected route!');
-});
+// app.get('/protected', verifyToken, (req, res) => {
+//   res.send('This is a protected route!');
+// });
 
 //app.use((req, res) => { res.send("Page Not Found")});
 

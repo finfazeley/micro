@@ -12,13 +12,15 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
         done(null, user);
+    }).catch((err) => {
+        console.log(err);
     })
 })
 
 
 passport.use(
     new GoogleStrategy({
-        callbackURL: '/auth/google/redirect',
+        callbackURL: process.env.GOOGLE_AUTH_REDIRECT_URI,
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }, (accessToken, refreshToken, profile, done) => {
@@ -29,6 +31,7 @@ passport.use(
             } else {
                 new User({
                     username: profile.displayName,
+                    email: profile.emails[0].value,
                     googleId: profile.id
                 }).save().then((newUser) => {
                     done(null, newUser);

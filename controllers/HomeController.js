@@ -11,6 +11,8 @@ const navPages = [
 exports.getHomePage = async (req, res, next) => {
   const userID = req.user;
   var login = true;
+  // print userID to console
+  console.log(userID);
   if(!userID || userID === undefined) {
     login = false;
   }
