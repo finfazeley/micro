@@ -17,6 +17,7 @@ router.post('/addcar', [checkLogin, ListingController.addcarlisting])
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
 router.post('/register', AuthController.register);
+router.get('/register', AuthController.getRegisterPage);
 router.post('/login', AuthController.login);
 router.get('/logout', checkLogin, AuthController.logout);
 

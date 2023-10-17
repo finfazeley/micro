@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended:false }));
 // To parse JSON data
 app.use(express.json());
 
+
 app.use('/', routes);
 
 
