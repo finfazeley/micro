@@ -5,6 +5,7 @@ const ListingController = require('./ListingController');
 const navPages = [
   { name: 'Home', url: '/', active: true },
   { name: 'Sell', url: '/sell', active: false},
+  { name: 'Register', url: '/register', active: false},
   { name: 'Login', url: '/auth', active: false}
 ]
 
