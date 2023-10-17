@@ -1,3 +1,15 @@
+/**
+ * Import function triggers from their respective submodules:
+ *
+ * const {onCall} = require("firebase-functions/v2/https");
+ * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
+ *
+ * See a full list of supported triggers at https://firebase.google.com/docs/functions
+ */
+//const functions = require('firebase-functions');
+const {onRequest} = require("firebase-functions/v2/https");
+const logger = require("firebase-functions/logger");
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -5,23 +17,11 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const cookies = require('cookie-parser');
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAgq70Lms32HDUnLK43IIBDu22KdzC8_EU",
-//   authDomain: "nwen304-23.firebaseapp.com",
-//   projectId: "nwen304-23",
-//   storageBucket: "nwen304-23.appspot.com",
-//   messagingSenderId: "638909197225",
-//   appId: "1:638909197225:web:e2d400f868180049a8b2b8",
-//   measurementId: "G-18J2WYQR10"
-// };
-
 const routes = require('./routes/routes');
 const googlePassport = require('./config/google_passport');
 const passport = require('passport');
 
 const app = express();
-
-// firebase.initializeApp(firebaseConfig);
 
 app.use(cors());
 app.use(cookies());
@@ -76,15 +76,12 @@ app.listen(5001, () => {
   }
 });
 
+exports.app = onRequest(app);
 
-// Import the functions you need from the SDKs you need
+// Create and deploy your first functions
+// https://firebase.google.com/docs/functions/get-started
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-
-// Initialize Firebase
-
+// exports.helloWorld = onRequest((request, response) => {
+//   logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
