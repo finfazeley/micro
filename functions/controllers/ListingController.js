@@ -11,8 +11,12 @@ const navPages = [
 exports.addcarlisting = async (req, res) => {
   try {
     const {make, model, year, mileage, description, price} = req.body;
-    const user = await User.findById(req.user);
-    if(!user) {res.status(500).json({message: 'No user found'});return;}
+    const userID = await User.findById(req.user);
+    if(!userID) {res.status(500).json({message: 'No user found'});return;}
+    const user = {
+      userID: userID,
+      name: userID.username
+    }
     const car = new CarListing({user, make, model, year, mileage, description, price});
     await car.save()
   } catch (err) {
@@ -41,10 +45,9 @@ exports.getAllListings = async () => {
   const listings = await CarListing.find().cursor().toArray();
   var newListings = [];
   for await (const list of listings) {
-    await User.findById(list.user.toHexString()).then(res => {
       newList = {
         id: list._id.toHexString(),
-        user: res.username,
+        user: list.user.name,
         make: list.make,
         model: list.model,
         year: list.year,
@@ -52,8 +55,7 @@ exports.getAllListings = async () => {
         description: list.description,
         price: list.price
       }
-      newListings.push(newList);
-    });
+      newListings.push(newList)
   }
   console.log(newListings);
   return newListings;
