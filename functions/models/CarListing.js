@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 
 const CarListingSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: [true, 'Please select an owner']
+    "userID": {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'Please select an owner']
+    },
+    "name" : String
   },
   make: String,
   model: String,
