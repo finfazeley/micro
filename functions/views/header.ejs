@@ -2,9 +2,16 @@
   <div class="nav-wrapper">
     <a class="title" href="/">Trade Cars</a>
     <ul id="nav">
-      <li><a href="/">Home</a></li>
-      <li><a href="/sell">Sell</a></li>
-      <li><a href="/auth">Login</a></li>
+      <% for(var page of navPages) { %>
+        <% if(page.active) { %>
+          <li><a class="active" href=<%= page.url %>><%= page.name %></a></li>
+        <% } else { %>
+          <% if(page.url === '/auth' && login) { %>
+            <li class="login">Logged in as: <%= user %></li>
+            <li><a href='/logout'>Logout</a></li>
+          <% } else { %>      
+            <li><a href=<%= page.url %>><%= page.name %></a></li>
+      <% }}} %>
     </ul>
   </div>
 </div>
