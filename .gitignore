@@ -4,3 +4,5 @@ node_modules/
 
 # Firebase
 firebase-debug.log
+
+mongodb_common_key.pem
