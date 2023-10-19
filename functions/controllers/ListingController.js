@@ -18,7 +18,8 @@ exports.addcarlisting = async (req, res) => {
       name: userID.username
     }
     const car = new CarListing({user, make, model, year, mileage, description, price});
-    await car.save()
+    await car.save();
+    return res.redirect('/');
   } catch (err) {
     res.status(500).json({message: err.message});
   }
