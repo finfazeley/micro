@@ -3,6 +3,29 @@
 <div class="body">
   <title>Trade Cars</title>
   <h1>Sell Cars</h1>
+  <div class="sell-form">
+    <form action="/addcar" method="post">
+        <label>Make:</label>
+        <input type="text" name="username" required>
+
+        <label>Model:</label>
+        <input type="text" name="model" required>
+
+        <label>Year:</label>
+        <input type="number" name="year" required>
+
+        <label>Mileage:</label>
+        <input type="number" name="mileage" required>
+
+        <label>Description:</label>
+        <input type="text" name="description" required>
+
+        <label>Price:</label>
+        <input type="number" name="price" required>
+
+        <input type="submit" value="Confirm Listing">
+    </form>
+</div>
 </div>
 
 <link href="/styles/style.css" rel="stylesheet" type="text/css">
