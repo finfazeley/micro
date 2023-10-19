@@ -12,7 +12,11 @@ router.get('/', checkLogin, HomeController.getHomePage);
 
 // Sell //
 router.get('/sell', checkLogin, ListingController.getSellPage);
-router.post('/addcar', [checkLogin, ListingController.addcarlisting])
+router.post('/addcar', [checkLogin, ListingController.addcarlisting]);
+
+// My listings
+router.get('/myListings', checkLogin, ListingController.getListings);
+
 
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
