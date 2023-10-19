@@ -40,24 +40,7 @@ exports.getSellPage = (req, res, next) => {
   });
 }
 
-exports.getListings = async (req, res, next) => {
-  const userID = req.user;
-  var login = true;
-  if(!userID || userID === undefined) {
-    login = false;
-  }
-  
-  //const listings = await ListingController.getUserListings();
-  findUser(userID).then(async user => {
-    const listings = await ListingController.getUserListings(user);
-    res.render('sell', {
-      navPages: navPages,
-      login: login,
-      user: user,
-      listings: listings
-    });
-  });
-}
+
 
 // Utility Functions
 
@@ -81,24 +64,3 @@ exports.getAllListings = async () => {
   return newListings;
 }
 
-exports.getUserListings = async (uName) => {
-  const listings = await CarListing.find().cursor().toArray();
-  var newListings = [];
-  for await (const list of listings) {
-    if (list.user.name==uName){
-      newList = {
-        id: list._id.toHexString(),
-        user: list.user.name,
-        make: list.make,
-        model: list.model,
-        year: list.year,
-        mileage: list.mileage,
-        description: list.description,
-        price: list.price
-      }
-      newListings.push(newList)
-    }
-  }
-  console.log(newListings);
-  return newListings;
-}

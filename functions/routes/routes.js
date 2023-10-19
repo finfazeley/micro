@@ -6,6 +6,7 @@ const ListingController = require('../controllers/ListingController');
 const HomeController = require('../controllers/HomeController');
 const checkLogin = require('../middlewares/checkLogin');
 const passport = require('passport');
+const MLController = require('../controllers/MyListController');
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);
@@ -15,7 +16,7 @@ router.get('/sell', checkLogin, ListingController.getSellPage);
 router.post('/addcar', [checkLogin, ListingController.addcarlisting]);
 
 // My listings
-router.get('/myListings', checkLogin, ListingController.getListings);
+router.get('/myListings', checkLogin, MLController.getML);
 
 
 // Auth //
