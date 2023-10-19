@@ -40,6 +40,8 @@ exports.getSellPage = (req, res, next) => {
   });
 }
 
+
+
 // Utility Functions
 
 exports.getAllListings = async () => {
@@ -61,3 +63,4 @@ exports.getAllListings = async () => {
   console.log(newListings);
   return newListings;
 }
+
