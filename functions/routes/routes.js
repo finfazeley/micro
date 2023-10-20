@@ -20,7 +20,7 @@ router.post('/addcar', [checkLogin, ListingController.addcarlisting]);
 router.get('/myListings', checkLogin, MLController.getML);
 
 // When you click on a listing
-router.get('/product/:prodID', pController.showProd);
+router.get('/product/:prodID', checkLogin, pController.showProd);
 //
 // (req,res,next)=>{
 //     console.log(`PID? : ${req.params.prodID}`)

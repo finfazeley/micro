@@ -16,12 +16,14 @@ exports.showProd = (req, res, next) => {
     if(!userID || userID === undefined) {
         login = false;
     }
+    // Make sure knows if logged in AND knows which car listing
     findProd(req.params.prodID).then(async product => {
-    //product = 
-    res.render('prod', {
-        navPages: navPages,
-        login: login,
-        product: product
+        findUser(userID).then(async user => {
+            res.render('prod', {
+                navPages: navPages,
+                login: login,
+                product: product,
+                user:user
+            });})
     });
-    });
-    }
+}
