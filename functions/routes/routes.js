@@ -21,11 +21,10 @@ router.get('/myListings', checkLogin, MLController.getML);
 
 // When you click on a listing
 router.get('/product/:prodID', checkLogin, pController.showProd);
-//
-// (req,res,next)=>{
-//     console.log(`PID? : ${req.params.prodID}`)
-//     console.log(`Request type : ${req.method}`)
-// })
+
+// to buy a listing
+router.get('/buy/:prodID', checkLogin, pController.buyProd);
+
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
 router.post('/register', AuthController.register);
