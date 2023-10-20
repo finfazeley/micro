@@ -5,7 +5,9 @@
     <h1 className="buy-heading">Purchase:</h1>
     <label>Please enter you details below:</label>
     <div className="buy">
-        <form action="/buy" method="post" onsubmit="return">
+        <form action="/confirmPurchase" method="post">
+
+            <input type="hidden" name="prod" value= <%= product.id %> />
 
             <label>Email</label>
             <input type="email" name="email" required>

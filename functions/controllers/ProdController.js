@@ -45,3 +45,29 @@ exports.buyProd = (req, res, next) => {
             });})
     });
 }
+
+exports.completePurchase = async (req, res) => {
+    try {
+
+        const product = findProd(req.body.prod);
+
+        if(!product) {
+            console.log("No product found");
+            res.status(500).json({message: 'No product found'});return;
+        }
+        // check user credentials match
+
+
+        else {
+            console.log("Product found");
+            console.log(req.body);
+
+            // delete the car from mongodb
+            
+        }
+
+        return res.redirect('/');
+    } catch (err) {
+      res.status(500).json({message: err.message});
+    }
+  }

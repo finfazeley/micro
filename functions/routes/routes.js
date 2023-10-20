@@ -24,6 +24,7 @@ router.get('/product/:prodID', checkLogin, pController.showProd);
 
 // to buy a listing
 router.get('/buy/:prodID', checkLogin, pController.buyProd);
+router.post('/confirmPurchase', [checkLogin, pController.completePurchase]);
 
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
