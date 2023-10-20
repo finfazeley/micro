@@ -7,11 +7,16 @@
         <% if(!product || product === undefined) { %>
             <label>THERE IS NO CAR</label> 
         <% } else { %>  
+            
             <ol>
                 <li>Make: <%= product.make %></li>
                 <li>Model: <%= product.model %></li>
-                
+                <li>Year: <%= product.year %></li>
+                <li>Mileage: <%= product.mileage %></li>
+                <li>Price: <%= product.price %></li>
+                <li>Description: <%= product.description %></li>
             </ol>
+            <label>Seller: <%= product.user.name %></label> 
         <% } %> 
     </div>
   </div>

@@ -16,12 +16,12 @@ exports.showProd = (req, res, next) => {
     if(!userID || userID === undefined) {
         login = false;
     }
-
+    findProd(req.params.prodID).then(async product => {
     //product = 
     res.render('prod', {
         navPages: navPages,
         login: login,
-        product: findProd(req.params.prodID)
+        product: product
     });
-
+    });
     }
