@@ -2,14 +2,28 @@
 
 <div class="body">
   <title>Trade Cars</title>
-  <h1 className="listings-heading">Car Listings</h1>
-  <div className="listings">
+  <div class="grid-container splash-header">
+    <div class="col col-6">
+      <h1 className="listings-heading">Car Listings</h1>
+      <p>We sell cars.</p>
+      <!-- <div style=""> -->
+        <a href="#" class="button" style="margin-right: 20px;">Primary Button</a> <a href="#" class="button-alt">Secondary</a>
+      <!-- </div> -->
+    </div>
+
+    <div class="col col-6"></div>
+
+  </div>
+  <%- include("listingBlock") %>
+
+  
+  <!-- <div className="listings">
     <ul>
       <% for (var car in listings) { %>
         <li><a href=<%= '/product/'+listings[car].id %>><%= listings[car].make %>: <%= listings[car].model %></a></li>
       <% } %>
     </ul>
-  </div>
+  </div> -->
 </div>
 
 <link href="/styles/style.css" rel="stylesheet" type="text/css">

@@ -3,13 +3,8 @@
 <div class="body">
   <title>Trade Cars</title>
   <h1 className="listings-heading">My Listings:</h1>
-  <div className="listings">
-    <ul>
-      <% for (var car in listings) { %>
-        <li><a href=<%= '/product/'+listings[car].id %>><%= listings[car].make %>: <%= listings[car].model %></a></li>
-      <% } %>
-    </ul>
-  </div>
+
+  <%- include("listingBlock") %>
 </div>
 
 <link href="/styles/style.css" rel="stylesheet" type="text/css">
