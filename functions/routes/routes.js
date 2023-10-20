@@ -7,6 +7,7 @@ const HomeController = require('../controllers/HomeController');
 const checkLogin = require('../middlewares/checkLogin');
 const passport = require('passport');
 const MLController = require('../controllers/MyListController');
+const pController = require('../controllers/ProdController')
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);
@@ -18,7 +19,13 @@ router.post('/addcar', [checkLogin, ListingController.addcarlisting]);
 // My listings
 router.get('/myListings', checkLogin, MLController.getML);
 
-
+// When you click on a listing
+router.get('/product/:prodID', pController.showProd);
+//
+// (req,res,next)=>{
+//     console.log(`PID? : ${req.params.prodID}`)
+//     console.log(`Request type : ${req.method}`)
+// })
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
 router.post('/register', AuthController.register);

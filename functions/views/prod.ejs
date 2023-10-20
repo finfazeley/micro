@@ -1,0 +1,26 @@
+<%- include("header") %>
+
+<div class="body">
+    <title>Trade Cars</title>
+    <h1 className="prod-heading">Product:</h1>
+    <div className="prod">
+        <% if(!product || product === undefined) { %>
+            <label>THERE IS NO CAR</label> 
+        <% } else { %>  
+            <ol>
+                <li>Make: <%= product.make %></li>
+                <li>Model: <%= product.model %></li>
+                
+            </ol>
+        <% } %> 
+    </div>
+  </div>
+  
+  <link href="/styles/style.css" rel="stylesheet" type="text/css">
+
+  <!-- make: String,
+  model: String,
+  year: Number,
+  mileage: Number,
+  description: String,
+  price: Number</Make: <%= product.make %></li> -->
