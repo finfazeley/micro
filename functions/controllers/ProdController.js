@@ -2,13 +2,7 @@ const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
 const findProd = require('../utils/findProductById')
-
-// const navPages = [
-//     { name: 'Home', url: '/', active: false },
-//     { name: 'Sell', url: '/sell', active: false},
-//     { name: 'Register', url: '/register', active: false},
-//     { name: 'Login', url: '/auth', active: false}
-//   ]
+const navPages = require('../utils/navPages');
 
 exports.showProd = (req, res, next) => {
     const userID = req.user;
@@ -20,7 +14,8 @@ exports.showProd = (req, res, next) => {
     findProd(req.params.prodID).then(async product => {
         findUser(userID).then(async user => {
             res.render('prod', {
-                // navPages: navPages,
+                navPages: navPages,
+                activeUrl: '/prod',
                 login: login,
                 product: product,
                 user:user
@@ -38,7 +33,8 @@ exports.buyProd = (req, res, next) => {
     findProd(req.params.prodID).then(async product => {
         findUser(userID).then(async user => {
             res.render('buy', {
-                // navPages: navPages,
+                navPages: navPages,
+                activeUrl: '/buy',
                 login: login,
                 product: product,
                 user:user

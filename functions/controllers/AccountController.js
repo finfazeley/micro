@@ -1,12 +1,7 @@
 const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
-
-// const navPages = [
-//     { name: 'Home', url: '/', active: false },
-//     { name: 'Sell', url: '/sell', active: false}
-//     //{ name: 'Login', url: '/auth', active: false}
-//   ]
+const navPages = require('../utils/navPages');
 
 exports.getAccount = (req, res, next) => {
     const userID = req.user;
@@ -19,10 +14,11 @@ exports.getAccount = (req, res, next) => {
     //const listings = await ListingController.getUserListings();
     getUser(userID).then(async user => {
       res.render('account', {
-        // navPages: navPages,
+        navPages: navPages,
+        activeUrl: '/account',
         login: login,
         user: user.username,
-        userfull: user
+        userData: user
       });
     });
   }
