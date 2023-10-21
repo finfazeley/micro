@@ -1,12 +1,7 @@
 const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
-
-const navPages = [
-  { name: 'Home', url: '/', active: false },
-  { name: 'Sell', url: '/sell', active: true},
-  { name: 'Login', url: '/auth', active: false}
-]
+const navPages = require('../utils/navPages');
 
 exports.addcarlisting = async (req, res) => {
   try {
@@ -34,6 +29,7 @@ exports.getSellPage = (req, res, next) => {
   findUser(userID).then(user => {
     res.render('sell', {
       navPages: navPages,
+      activeUrl: '/sell',
       login: login,
       user: user
     });
