@@ -26,7 +26,6 @@ router.get('/year', async (req, res) => {
     }
     newListings.push(newList);
   }
-  console.log(newListings);
   res.send(JSON.stringify(newListings));
 })
 
