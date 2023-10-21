@@ -30,7 +30,6 @@ router.post('/confirmPurchase', [checkLogin, pController.completePurchase]);
 // to show users account
 router.get('/account', checkLogin, accountController.getAccount);
 
-
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
 router.post('/register', AuthController.register);

@@ -2,12 +2,11 @@ const User = require('../models/User');
 const findUser =  require('../utils/findUserById');
 const ListingController = require('./ListingController');
 
-const navPages = [
-  { name: 'Home', url: '/', active: true },
-  { name: 'Sell', url: '/sell', active: false},
-  { name: 'Register', url: '/register', active: false},
-  { name: 'Login', url: '/auth', active: false}
-]
+// const navPages = [
+//   { name: 'Home', url: '/', active: true },
+//   { name: 'Register', url: '/register', active: false},
+//   { name: 'Login', url: '/auth', active: false}
+// ]
 
 exports.getHomePage = async (req, res, next) => {
   const userID = req.user;
@@ -20,7 +19,7 @@ exports.getHomePage = async (req, res, next) => {
   const userName = await findUser(userID);
   const listings = await ListingController.getAllListings();
   res.render('index', {
-    navPages: navPages,
+    // navPages: navPages,
     login: login,
     user: userName,
     listings: listings
