@@ -9,6 +9,7 @@ exports.getAccount = (req, res, next) => {
     if(!userID || userID === undefined) {
       login = false;
     }
+    //console.log(login);
     
     //const listings = await ListingController.getUserListings();
     getUser(userID).then(async user => {
