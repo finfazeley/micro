@@ -2,9 +2,16 @@
 
 <div class="body">
   <title>Trade Cars</title>
-  <h1 className="listings-heading">My Listings:</h1>
+  <h1 className="listings-heading" style="margin-left: 20px;">My Listings:</h1>
+    <% if (listings.length === 0) {%>
+        <h3 className="listings-heading" style="margin-left: 20px;">It appears you have no listings.</h3>
 
-  <%- include("listingBlock") %>
+        <a href="/sell" class="button" style="margin-left: 20px;">Make a Listing</a> 
+
+    <%} else { %>
+        <%- include("listingBlock") %>
+    <% } %>
+
 </div>
 
 <link href="/styles/style.css" rel="stylesheet" type="text/css">
