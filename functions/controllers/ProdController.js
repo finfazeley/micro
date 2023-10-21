@@ -37,7 +37,8 @@ exports.buyProd = (req, res, next) => {
                 activeUrl: '/buy',
                 login: login,
                 product: product,
-                user:user
+                user:user,
+                userID: userID
             });})
     });
 }
@@ -45,39 +46,51 @@ exports.buyProd = (req, res, next) => {
 exports.completePurchase = async (req, res) => {
     try {
 
-        const product = findProd(req.body.prod);
+        const product = await findProd(req.body.prod);
+        // User.update({},
+        //     {$set : {"purchases":[]}},
+        //     {upsert:false,
+        //     multi:true}) 
+        
+        // return res.redirect('/');
+
+
+        // console.log(req.body.username);
+        // console.log(await findUser(req.body.userID));
 
         if(!product) {
             console.log("No product found");
             res.status(400).json({message: 'No product found'});
-            return;
+            return res.redirect('/');
+
         }
         // check user credentials match
-        if (req.body.username !== req.body.userName){
-            res.status(400).json({message: 'Incorrect email'});         
-            return;
+        if (req.body.username !== await findUser(req.body.userID)){
+            res.status(400).json({message: 'Incorrect username'});
+            return res.redirect('/');
+         
         }
-        
 
         // "purchase" the car from mongodb
         const result = await CarListing.deleteOne({_id: req.body.prod});
         if (result.deletedCount === 1) {
-            console.log("Successfully deleted one document.");
+            
+            //console.log("Successfully deleted one document.");
+
+            // give user product in purchase history
+            const res2 = await User.updateOne(
+                { _id: req.body.userID },
+                { $push: { purchases: product.price } },
+                );
+            
+            //console.log(res2);
+
           } else {
-            console.log("No documents matched the query. Deleted 0 documents.");
+            res.status(400).json({message: "Product couldn't be purchased"});
         }
 
         // finished
         return res.redirect('/');
-
-
-        // else {
-        //     console.log("Product found");
-        //     console.log(req.body);
-
-        //     // delete the car from mongodb
-            
-        // }
 
         
     } catch (err) {
