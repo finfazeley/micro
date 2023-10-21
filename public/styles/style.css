@@ -285,3 +285,49 @@ body li {
   background-color: #d43945;
   display: inline-block;
 } */
+
+.search-form {
+  background-color: #e0e0e0;
+  padding: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  font-weight: bold;
+}
+
+select, input[type="range"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+output {
+  display: inline;
+  margin-left: 10px;
+}
+
+button[type="submit"] {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #222;
+}
