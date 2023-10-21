@@ -5,8 +5,7 @@ const findUser =  require('../utils/findUserById');
 const navPages = [
     { name: 'Home', url: '/', active: false },
     { name: 'Sell', url: '/sell', active: false},
-    { name: 'Login', url: '/auth', active: false},
-    { name: 'MyList', url: '/myListings', active: true }
+    { name: 'Login', url: '/auth', active: false}
   ]
 
   exports.getML = (req, res, next) => {
