@@ -2,8 +2,13 @@
 
 <div class="body">
     <title>Trade Cards</title>
-    <h1>Login</h1>
-    <div className="login-form">
+    <div class="grid-container">
+        <div class="col col-4">
+            <div class="form-container">
+
+                <label>Please enter account details:</label>
+
+
         <form action="/login" method="post">
             <label>Email</label>
             <input type="text" name="email">
@@ -11,13 +16,15 @@
             <input type="password" name="password">
             <input type="submit" value="Login"/>
         </form>
-    </div>
-
-    <!-- Google Login Button -->
-    <div class="google-login-button">
+        
         <a href="/auth/google">
             <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google"/>
         </a>
+    </div></div>
+
+    <!-- Google Login Button -->
+    
+       
     </div>
 </div>
 
