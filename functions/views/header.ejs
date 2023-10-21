@@ -1,39 +1,20 @@
-<!-- <div class="header">
-  <div class="nav-wrapper">
-    <a class="title" href="/">Trade Cars</a>
-    <ul id="nav">
-      <% for(var page of navPages) { %>
-        <% if(page.active) { %>
-          <li><a class="active" href=<%= page.url %>><%= page.name %></a></li>
-        <% } else { %>
-          <% if(page.url === '/auth' && login) { %>
-            <li class="login">Logged in as: <%= user %></li>
-            <li><a href='/myListings'>My Listings</a></li>
-            <li><a href='/logout'>Logout</a></li>
-          <% } else { %>      
-            <li><a href=<%= page.url %>><%= page.name %></a></li>
-      <% }}} %>
-    </ul>
-  </div>
-</div> -->
-
 <div class="header">
   <div class="nav-wrapper">
     <a class="title" href="/">Trade Cars</a>
     <ul id="nav">
       <% for(var page of navPages) { %>
-        <% if(page.active) { %>
+        <% if(page.url === activeUrl) { %>
           <li><a class="active" href=<%= page.url %>><%= page.name %></a></li>
         <% } else { %>
-          <% if(page.url === '/auth' && login) { %>
-            
-            <li><a href='/myListings'>My Listings</a></li>
-            <li><a href='/account'>Account</a></li>
-            <li class="login">Logged in as: <%= user %></li>
-            <li><a href='/logout'>Logout</a></li>
-          <% } else { %>      
+          <% if(login && page.onLogIn) { %>
+            <% if(page.url === '/logout') { %>
+              <li class="login">Logged in as: <%= user %>  </li>
+            <% } %>
             <li><a href=<%= page.url %>><%= page.name %></a></li>
-      <% }}} %>
+          <% } else if (!login && page.onLogOut) { %>
+            <li><a href=<%= page.url %>><%= page.name %></a></li>
+          <% }} %>
+      <% } %>
     </ul>
   </div>
 </div>
