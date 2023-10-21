@@ -2,32 +2,36 @@
 
 <div class="body">
     <title>Trade Cars</title>
-    <h1 className="buy-heading">Purchase:</h1>
-    <label>Please enter you details below:</label>
-    <div className="buy">
-        <form action="/confirmPurchase" method="post">
-
-            <input type="hidden" name="prod" value= <%= product.id %> />
-
-            <label>Email</label>
-            <input type="email" name="email" required>
-
-            <label>Password</label>
-            <input type="password" name="password" required>
-
-            <label>Credit Card</label>
-            <input type="number" name="card_number" required>
-
-            <label>Expiry</label>
-            <input type="month" name="expiry" required>
-
-            <label>CCV</label>
-            <input type="number" name="ccv" required>
-
-            <input type="submit" value="Confirm">
-        </form>
-        
+    <div class="grid-container">
+        <div class="col col-4">
+            <div class="form-container">
+                
+                <label>Please enter you details below:</label>
+                <form action="/confirmPurchase" method="post">
+    
+                    <input type="hidden" name="prod" value= <%= product.id %> />
+    
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+    
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+    
+                    <label>Credit Card</label>
+                    <input type="number" name="card_number" required>
+    
+                    <label>Expiry</label>
+                    <input type="month" name="expiry" required>
+    
+                    <label>CCV</label>
+                    <input type="number" name="ccv" required>
+    
+                    <input type="submit" value="Confirm">
+                </form>
+        </div>
     </div>
+   
+        </div>
   </div>
   
   <link href="/styles/style.css" rel="stylesheet" type="text/css">

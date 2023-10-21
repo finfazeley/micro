@@ -68,9 +68,9 @@ img {
   border-radius: 3px;
 }
 
-a.active {
-  /* background-color: #b2b2b2; */
-}
+/* a.active {
+  background-color: #b2b2b2;
+} */
 
 .body {
   padding-top: 60px;
@@ -78,7 +78,7 @@ a.active {
 
 .header {
   background: #222;
-  color: black;
+  color: white;
   position: fixed;
   top: 0;
   min-height: 60px;
@@ -157,19 +157,17 @@ a.active {
   background-color: #a1a1a1;
 } */
 
-body h1 {
-  /* padding: 2rem; */
-  /* text-decoration: underline; */
-  /* color: #555555 */
-}
+/* body h1 {
+  padding: 2rem;
+  text-decoration: underline;
+  color: #555555
+} */
 
 body ul {
   list-style-type: none;
 }
 
-body li {
-  display: flex;
-}
+
 
 /* body li a {
   /* text-decoration: none;
@@ -196,7 +194,35 @@ body li a:hover {
 }
 
 
+.form-container {
+  background-color: #e0e0e0; 
+  padding: 20px;
+  max-width: 300px;
+  margin: 0 auto; 
+}
 
+.form-container label {
+  display: block; 
+  margin-top: 10px;
+  color: #000;
+}
+
+.form-container input {
+  width: 100%; 
+  padding: 10px;
+  margin-top: 5px; 
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.form-container input[type="submit"] {
+  background-color: #000; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
 
 
 
@@ -232,3 +258,30 @@ body li a:hover {
   .col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
   .col-12 { flex: 0 0 100%; max-width: 100%; }
 }
+
+body li {
+  display: flex;
+}
+
+#car-box {
+
+  padding: 10px;
+  float: right;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #F0F0F0;
+  border: 2px solid #000;
+  /* Your CSS styles go here */
+  /* 
+   */
+  /* Add any other styles you want */
+}
+
+/* .car-box {
+  color: #fff;
+  padding-left: 15px;  padding: 14px 22px;
+  background-color: #d43945;
+  display: inline-block;
+} */

@@ -2,31 +2,42 @@
 
 <div class="body">
     <title>Trade Cars</title>
-    <h1 className="prod-heading">Product:</h1>
-    <div className="prod">
-        <% if(!product || product === undefined) { %>
-            <label>THERE IS NO CAR</label> 
-        <% } else { %>  
-            
-            <ol>
-                <li>Make: <%= product.make %></li>
-                <li>Model: <%= product.model %></li>
-                <li>Year: <%= product.year %></li>
-                <li>Mileage: <%= product.mileage %></li>
-                <li>Price: <%= product.price %></li>
-                <li>Description: <%= product.description %></li>
-            </ol>
-            <label>Seller: <%= product.user.name %></label> 
-
-        <% } %> 
-    </div>
-        <div>
-            <% if(login) { %>
-                <a href=<%= '/buy/'+product.id %> >
-                    <button class="btn btn-primary" >BUY NOW</button>
-                </a>
-            <% } %>  
+    
+    <div class="grid-container">
+        <div class="col col-4">
+            <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=2456&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
+
+        <div class="col col-3">
+            <div id="car-box">
+                <% if(!product || product === undefined) { %>
+                    <label>THERE IS NO CAR</label> 
+                <% } else { %>  
+                    <h3>Vehicle Details:</h3> 
+                    
+                    <ol>
+                        <li>Make: <%= product.make %></li>
+                        <li>Model: <%= product.model %></li>
+                        <li>Year: <%= product.year %></li>
+                        <li>Mileage: <%= product.mileage %></li>
+                        <li>Price: <%= product.price %></li>
+                        <li>Seller: <%= product.user.name %></li> 
+                        <li>Description: <%= product.description %></li>
+                    </ol>
+                    
+                    <div>
+                        <% if(login) { %>
+                            <a href=<%= '/buy/'+product.id %> >
+                                <button class="button" >BUY NOW</button>
+                            </a>
+                        <% } %>  
+                    </div>
+                <% } %> 
+            </div>
+
+        </div>
+    </div>
+        
   </div>
   
   <link href="/styles/style.css" rel="stylesheet" type="text/css">
