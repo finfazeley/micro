@@ -47,16 +47,6 @@ exports.completePurchase = async (req, res) => {
     try {
 
         const product = await findProd(req.body.prod);
-        // User.update({},
-        //     {$set : {"purchases":[]}},
-        //     {upsert:false,
-        //     multi:true}) 
-        
-        // return res.redirect('/');
-
-
-        // console.log(req.body.username);
-        // console.log(await findUser(req.body.userID));
 
         if(!product) {
             console.log("No product found");
@@ -64,11 +54,11 @@ exports.completePurchase = async (req, res) => {
             return res.redirect('/');
 
         }
+
         // check user credentials match
         if (req.body.username !== await findUser(req.body.userID)){
             res.status(400).json({message: 'Incorrect username'});
             return res.redirect('/');
-         
         }
 
         // "purchase" the car from mongodb

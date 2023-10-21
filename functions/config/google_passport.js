@@ -32,7 +32,8 @@ passport.use(
                 new User({
                     username: profile.displayName,
                     email: profile.emails[0].value,
-                    googleId: profile.id
+                    googleId: profile.id,
+                    purchases: []
                 }).save().then((newUser) => {
                     done(null, newUser);
                 });
