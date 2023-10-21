@@ -5,11 +5,11 @@ const findUser =  require('../utils/findUserById');
 const cookies = require('cookie-parser');
 const tokenBlacklist = require('../middlewares/tokenBlackList');
 
-const navPages = [
-    { name: 'Home', url: '/', active: false },
-    { name: 'Sell', url: '/sell', active: false},
-    { name: 'Login', url: '/auth', active: true}
-  ]
+// const navPages = [
+//     { name: 'Home', url: '/', active: false },
+//     { name: 'Sell', url: '/sell', active: false},
+//     { name: 'Login', url: '/auth', active: true}
+//   ]
 require('dotenv').config();
 
 exports.register = async (req, res) => {
@@ -79,7 +79,7 @@ exports.getAuthPage = (req, res, next) => {
   }
   findUser(userID).then(user => {
     res.render('auth', {
-      navPages: navPages,
+    //   navPages: navPages,
       login: login,
       user: user
     });
