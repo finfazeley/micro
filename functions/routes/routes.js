@@ -8,6 +8,7 @@ const checkLogin = require('../middlewares/checkLogin');
 const passport = require('passport');
 const MLController = require('../controllers/MyListController');
 const pController = require('../controllers/ProdController')
+const accountController = require('../controllers/AccountController')
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);
@@ -25,6 +26,10 @@ router.get('/product/:prodID', checkLogin, pController.showProd);
 // to buy a listing
 router.get('/buy/:prodID', checkLogin, pController.buyProd);
 router.post('/confirmPurchase', [checkLogin, pController.completePurchase]);
+
+// to show users account
+router.get('/account', checkLogin, accountController.getAccount);
+
 
 // Auth //
 router.get('/auth', checkLogin, AuthController.getAuthPage);
