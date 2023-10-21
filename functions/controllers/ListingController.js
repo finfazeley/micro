@@ -2,11 +2,11 @@ const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
 
-const navPages = [
-  { name: 'Home', url: '/', active: false },
-  { name: 'Sell', url: '/sell', active: true},
-  { name: 'Login', url: '/auth', active: false}
-]
+// const navPages = [
+//   { name: 'Home', url: '/', active: false },
+//   { name: 'Sell', url: '/sell', active: true},
+//   { name: 'Login', url: '/auth', active: false}
+// ]
 
 exports.addcarlisting = async (req, res) => {
   try {
@@ -33,7 +33,7 @@ exports.getSellPage = (req, res, next) => {
   }
   findUser(userID).then(user => {
     res.render('sell', {
-      navPages: navPages,
+      // navPages: navPages,
       login: login,
       user: user
     });
@@ -58,7 +58,7 @@ exports.getAllListings = async () => {
       }
       newListings.push(newList)
   }
-  console.log(newListings);
+  //console.log(newListings);
   return newListings;
 }
 

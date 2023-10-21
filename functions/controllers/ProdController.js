@@ -60,7 +60,7 @@ exports.completePurchase = async (req, res) => {
 
         else {
             console.log("Product found");
-            console.log(req.body);
+            //console.log(req.body);
 
             // delete the car from mongodb
             

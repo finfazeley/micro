@@ -47,6 +47,6 @@ getUserListings = async (uName) => {
         newListings.push(newList)
       }
     }
-    console.log(newListings);
+    //console.log(newListings);
     return newListings;
   }

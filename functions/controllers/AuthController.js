@@ -92,7 +92,6 @@ exports.getRegisterPage = (req, res, next) => {
   }
 
   res.render('register', {
-      navPages: navPages,
       login: false
   });
 }
