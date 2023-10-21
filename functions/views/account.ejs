@@ -1,0 +1,20 @@
+<%- include("header") %>
+
+<div class="body">
+  <title>Trade Cars</title>
+
+    <div class="grid-container">
+        <div class="col col-4">
+        <h1 className="listings-heading" style="margin-left: 20px;">My Account:</h1>
+            <div class="form-container">
+
+                <li>Username: <%= user.username %></li>
+                <li>Email: <%= user.email %></li>
+                <a href="#" class="button" ">Reset  Password</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/styles/style.css" rel="stylesheet" type="text/css">

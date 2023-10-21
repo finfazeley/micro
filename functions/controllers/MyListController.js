@@ -8,7 +8,7 @@ const navPages = [
     { name: 'Login', url: '/auth', active: false}
   ]
 
-  exports.getML = (req, res, next) => {
+exports.getML = (req, res, next) => {
     const userID = req.user;
     var login = true;
     if(!userID || userID === undefined) {
