@@ -43,6 +43,12 @@ getRecs = async (userID) => {
         return newListings;
     }
 
+    if(purchases.length === 0){
+      console.log("No previous purchases");
+        // console.log(purchases);
+      return newListings;
+    }
+
     const average = purchases => purchases.reduce((a, b) => a + b) / purchases.length;
     const averagePurchase = average(purchases)
     // console.log(averagePurchase);
