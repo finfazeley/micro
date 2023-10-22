@@ -2,7 +2,7 @@
 node_modules/
 .env
 
-# Firebase
-firebase-debug.log
+.vscode
 
 mongodb_common_key.pem
+node_modules
