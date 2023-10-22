@@ -1,6 +1,3 @@
-// Firebase
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
 // Dependencies
 const express = require('express');
 const cors = require('cors');
@@ -31,6 +28,7 @@ app.use(passport.session());
 /**
  * Serve static files in public directory
  */
+app.use(express.static('../public'));
 app.use(express.urlencoded({ extended:false }));
 
 // To parse JSON data
@@ -49,4 +47,8 @@ mongoose.connect(process.env.MONGO_DB + process.env.MONGO_CERT,
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
-exports.app = onRequest(app);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});

@@ -11,11 +11,14 @@ const pController = require('../controllers/ProdController');
 const accountController = require('../controllers/AccountController');
 const recController = require('../controllers/Recommended')
 
-// temp for recommendation
+// recommendation
 router.get('/recommended', checkLogin, recController.getRecommended);
 
+// email password reset
 router.get('/resetPassword', checkLogin, accountController.getReset)
 router.post('/resetPassword', checkLogin, accountController.postReset)
+router.get('/changePassword/:userId/:token', checkLogin, accountController.changePassword)
+router.post('/changePassword/confirm', checkLogin, accountController.confirmPassword)
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);
