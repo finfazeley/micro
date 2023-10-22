@@ -17,7 +17,7 @@
           </li>
         </a>
         <% } %>
-        
+
     </div>
   </div>
   <div class="col col-4">
@@ -25,6 +25,18 @@
 
       <label for="year">Sort By Year: </label>
       <select name="year" onChange="sortByYear(this.value)" onfocus="this.selectedIndex = -1;">
+        <option value="asc">Ascending</option>
+        <option value="des">Descending</option>
+      </select>
+
+      <label for="price">Sort By Price: </label>
+      <select name="price" onChange="sortByPrice(this.value)" onfocus="this.selectedIndex = -1;">
+        <option value="asc">Ascending</option>
+        <option value="des">Descending</option>
+      </select>
+
+      <label for="mileage">Sort By Mileage: </label>
+      <select name="mileage" onChange="sortByMileage(this.value)" onfocus="this.selectedIndex = -1;">
         <option value="asc">Ascending</option>
         <option value="des">Descending</option>
       </select>
