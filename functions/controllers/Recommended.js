@@ -50,7 +50,7 @@ getRecs = async (userID) => {
     for await (const list of listings) {
    
         // the listing has to be within this range to be recommended
-        if (list.price >= (averagePurchase - 5000) && list.price <= (5000 + averagePurchase)) {
+        if (list.price >= (averagePurchase - 5000) && list.price <= (5000 + averagePurchase) && list.user.name !== user.username) {
             newList = {
                 id: list._id.toHexString(),
                 user: list.user.name,
