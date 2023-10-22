@@ -23,6 +23,46 @@ exports.getAccount = (req, res, next) => {
     });
   }
 
+exports.getReset = (req, res, next) => {
+  const userID = req.user;
+  var login = true;
+  if(!userID || userID === undefined) {
+    login = false;
+  }
+  //console.log(login);
+  
+  //const listings = await ListingController.getUserListings();
+  getUser(userID).then(async user => {
+    res.render('reset', {
+      navPages: navPages,
+      activeUrl: '/resetPassword',
+      login: login,
+      user: user.username,
+      userID: userID
+    });
+  });
+}
+
+exports.postReset = (req, res, next) => {
+  console.log(req.body);
+  const userID = req.user;
+  var login = true;
+  if(!userID || userID === undefined) {
+    login = false;
+  }
+  //console.log(login);
+  
+  //const listings = await ListingController.getUserListings();
+  getUser(userID).then(async user => {
+    res.render('reset', {
+      navPages: navPages,
+      activeUrl: '/resetPassword/${userID}',
+      login: login,
+      user: user.username,
+      userID: userID
+    });
+  });
+}
 
   // utility
 
