@@ -24,6 +24,7 @@ exports.getAccount = (req, res, next) => {
     });
   }
 
+// this page is for the user to confirm they want to change their password
 exports.getReset = (req, res, next) => {
   const userID = req.user;
   var login = true;
@@ -43,6 +44,7 @@ exports.getReset = (req, res, next) => {
   });
 }
 
+// function to generate token and send link to user
 exports.postReset = async (req, res, next) => {
   //console.log(req);
 
@@ -75,6 +77,7 @@ exports.postReset = async (req, res, next) => {
 
 }
 
+
 exports.confirmPassword = async (req, res, next) => {
   //console.log(req);
 
@@ -104,6 +107,7 @@ exports.confirmPassword = async (req, res, next) => {
 
 }
 
+// here is where the user actually changes their password
 exports.changePassword = async (req, res, next) => {
   //console.log(req);
 
@@ -135,12 +139,12 @@ exports.changePassword = async (req, res, next) => {
     res.status(400).json({ message: "Invalid token" });
 
   }
-  
-  
-
 }
 
 // utility
+
+// function to send an email using a zoho mail account i made (google security is too good)
+// note that the email will most often go in to the users spam mail
 sendEmail = async (email, subject, text) => {
     try {
       var transport = nodemailer.createTransport({
@@ -155,7 +159,7 @@ sendEmail = async (email, subject, text) => {
 
        var mailOptions = {
             from: "nwen.tradecars@zohomail.com.au",
-            to: "nwen.tradecars@zohomail.com.au", // PUT EMAIL HERE
+            to: email,
             subject: subject,
             text: text,
         };
