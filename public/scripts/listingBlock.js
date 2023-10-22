@@ -30,7 +30,7 @@ const rebuildList = (json) => {
     var li1 = document.createElement("li");
     li1.innerText = listing.make;
     var li2 = document.createElement("li");
-    li2.innerText = listing.price;
+    li2.innerText = "$" + listing.price;
     listingElement.appendChild(img);
     listingElement.appendChild(h2);
     listingElement.appendChild(li1);
