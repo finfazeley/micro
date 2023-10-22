@@ -61,6 +61,12 @@ exports.completePurchase = async (req, res) => {
             return res.redirect('/');
         }
 
+        // user cant buy their own car
+        if (req.body.username === product.user.name){
+            res.status(400).json({message: 'Cannot buy your own car'});
+            return res.redirect('/');
+        }
+
         // "purchase" the car from mongodb
         const result = await CarListing.deleteOne({_id: req.body.prod});
         if (result.deletedCount === 1) {
@@ -71,7 +77,7 @@ exports.completePurchase = async (req, res) => {
             const res2 = await User.updateOne(
                 { _id: req.body.userID },
                 { $push: { purchases: product.price } },
-                );
+            );
             
             //console.log(res2);
 

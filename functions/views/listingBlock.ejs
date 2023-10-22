@@ -17,6 +17,34 @@
     </div>
     <div class="col col-4">
         <div class="search-form">
+            <!-- Make call to get the users recommendations - update listings, refresh page -->
+            <!-- <form action="/recommended" method="get">
+                <input type="hidden" name="username" value= <%= user %> />
+                <button type="submit">See Recommendations</button>
+            </form> -->
+
+            <a href="/recommended" class="button-alt">See Recommendations</a>
+            <!-- <button class="button-alt" id="recommendationsBtn">See Recommendations</button>
+
+            <script>
+                document.getElementById('recommendationsBtn').addEventListener('click', function () {
+                    // Make an AJAX request to update the listings
+                    fetch('/updateListings', { method: 'POST' })
+                        .then(response => {
+                            if (response.status === 200) {
+                                // Reload the page to reflect the updated 'listings'
+                                window.location.reload();
+                            } else {
+                                console.error('Failed to update listings.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Failed to update listings:', error);
+                        });
+                });
+            </script> -->
+
+
         <form action="/searchCars" method="get">
             <label for="make">Car Make:</label>
             <select name="make" id="make">
