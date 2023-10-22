@@ -1,6 +1,10 @@
 const sortByYear = async (order) => {
   const response = await fetch("http://localhost:5001/api/year?order="+order);
   const json = await response.json();
+  rebuildList(json);
+}
+
+const rebuildList = (json) => {
   var listingContainer = document.getElementById("listings");
   listingContainer.innerHTML = "";
   json.forEach((listing) => {
