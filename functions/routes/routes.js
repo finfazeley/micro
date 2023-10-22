@@ -15,7 +15,7 @@ const recController = require('../controllers/Recommended')
 router.get('/recommended', checkLogin, recController.getRecommended);
 
 router.get('/resetPassword', checkLogin, accountController.getReset)
-router.post('/resetPassword/:userID', checkLogin, accountController.postReset)
+router.post('/resetPassword', checkLogin, accountController.postReset)
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);

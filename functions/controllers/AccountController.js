@@ -32,9 +32,6 @@ exports.getReset = (req, res, next) => {
     login = false;
   }
 
-
-  
-
   //const listings = await ListingController.getUserListings();
   getUser(userID).then(async user => {
     res.render('reset', {
@@ -48,7 +45,7 @@ exports.getReset = (req, res, next) => {
 }
 
 exports.postReset = async (req, res, next) => {
-  console.log(req);
+  //console.log(req);
 
   // Check user is logged in
   if(!req.user || req.user === undefined) {
@@ -66,23 +63,12 @@ exports.postReset = async (req, res, next) => {
     // return res.redirect('/');
   }
 
-  // Check validity of token
-  // generate token for user
+  // generate token for user and send email
   const token = jwt.sign({ userId: fullUser.userID }, process.env.JWT_SECRET, { expiresIn: '5m' });
-
   await sendEmail(fullUser.email, "Password reset", token);
 
-  // render
-  // res.render('reset', {
-  //   navPages: navPages,
-  //   activeUrl: '/resetPassword/${userID}',
-  //   user: fullUser,
-  //   login: true,
-  //   userID: fullUser.userID
-
-  // });
-
-  //const listings = await ListingController.getUserListings();
+  // return to homepage
+  return res.redirect('/');
 
 }
 
@@ -99,7 +85,7 @@ sendEmail = async (email, subject, text) => {
       });
 
        var mailOptions = {
-            from: "test@Mail.com",
+            from: "admin@tradecars.onrender.com",
             to: email,
             subject: subject,
             text: text,
