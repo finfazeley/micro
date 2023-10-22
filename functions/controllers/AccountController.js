@@ -2,6 +2,8 @@ const User = require('../models/User');
 const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
 const navPages = require('../utils/navPages');
+const jwt = require('jsonwebtoken');
+const nodemailer = require("nodemailer");
 
 exports.getAccount = (req, res, next) => {
     const userID = req.user;
@@ -29,8 +31,10 @@ exports.getReset = (req, res, next) => {
   if(!userID || userID === undefined) {
     login = false;
   }
-  //console.log(login);
+
+
   
+
   //const listings = await ListingController.getUserListings();
   getUser(userID).then(async user => {
     res.render('reset', {
@@ -43,28 +47,77 @@ exports.getReset = (req, res, next) => {
   });
 }
 
-exports.postReset = (req, res, next) => {
-  console.log(req.body);
-  const userID = req.user;
-  var login = true;
-  if(!userID || userID === undefined) {
-    login = false;
+exports.postReset = async (req, res, next) => {
+  console.log(req);
+
+  // Check user is logged in
+  if(!req.user || req.user === undefined) {
+    res.status(400).json({ message: "You are not logged in" });
+    return;
+    // return res.redirect('/');
   }
-  //console.log(login);
+
+  // Check user email matches logged in user
+  const fullUser = await getUser(req.user);
   
+  if (req.body.email !== fullUser.email){
+    res.status(400).json({ message: "Invalid Email" });
+    return;
+    // return res.redirect('/');
+  }
+
+  // Check validity of token
+  // generate token for user
+  const token = jwt.sign({ userId: fullUser.userID }, process.env.JWT_SECRET, { expiresIn: '5m' });
+
+  await sendEmail(fullUser.email, "Password reset", token);
+
+  // render
+  // res.render('reset', {
+  //   navPages: navPages,
+  //   activeUrl: '/resetPassword/${userID}',
+  //   user: fullUser,
+  //   login: true,
+  //   userID: fullUser.userID
+
+  // });
+
   //const listings = await ListingController.getUserListings();
-  getUser(userID).then(async user => {
-    res.render('reset', {
-      navPages: navPages,
-      activeUrl: '/resetPassword/${userID}',
-      login: login,
-      user: user.username,
-      userID: userID
-    });
-  });
+
 }
 
-  // utility
+// utility
+sendEmail = async (email, subject, text) => {
+    try {
+      var transport = nodemailer.createTransport({
+        host: "sandbox.smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+          user: "fff0b9d2a5de58",
+          pass: "a1d82c487dd831"
+        }
+      });
+
+       var mailOptions = {
+            from: "test@Mail.com",
+            to: email,
+            subject: subject,
+            text: text,
+        };
+
+        transport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        });
+
+        console.log("email sent sucessfully");
+    } catch (error) {
+        console.log(error, "email not sent");
+    }
+};
+  
 
 
 getUser = async(userID) => {
