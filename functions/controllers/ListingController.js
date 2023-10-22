@@ -54,7 +54,7 @@ exports.getAllListings = async () => {
       }
       newListings.push(newList)
   }
-  console.log(newListings);
+  //console.log(newListings);
   return newListings;
 }
 

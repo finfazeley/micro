@@ -1,0 +1,33 @@
+<%- include("header") %>
+<div class="body">
+    <title>Trade Cars</title>
+    <h1 className="rec-heading" style="margin-left: 20px;">Recommendations:</h1>
+      <% if (!login) {%>
+          <h3 className="listings-heading" style="margin-left: 20px;">Please login to view recommendations.</h3>
+          <a href="/" class="button" style="margin-left: 20px;">Back Home</a> 
+      <%} else { %>
+            <% if (listings.length === 0) {%>
+                <h3 className="listings-heading" style="margin-left: 20px;">Cannot find any recommendations.</h3>
+
+            
+            <% } else { %>
+                <div class="grid-container">
+                <div class="col col-8">
+                    <div class="listings-container">
+                        <% for (var car in listings) { %>
+                            <a class="listing-item" href="<%= '/product/'+listings[car].id %>">
+                            
+                                <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=2456&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                                <h2><%= listings[car].model %></h2>
+                                <li><%= listings[car].make %></li>
+                                <li>$<%= listings[car].price %></li>
+                            </a>
+            
+                            
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+      <% }} %>
+  </div>
+  <link href="/styles/style.css" rel="stylesheet" type="text/css">

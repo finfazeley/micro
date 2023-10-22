@@ -7,8 +7,12 @@ const HomeController = require('../controllers/HomeController');
 const checkLogin = require('../middlewares/checkLogin');
 const passport = require('passport');
 const MLController = require('../controllers/MyListController');
-const pController = require('../controllers/ProdController')
-const accountController = require('../controllers/AccountController')
+const pController = require('../controllers/ProdController');
+const accountController = require('../controllers/AccountController');
+const recController = require('../controllers/Recommended')
+
+// temp for recommendation
+router.get('/recommended', checkLogin, recController.getRecommended);
 
 // Home //
 router.get('/', checkLogin, HomeController.getHomePage);
