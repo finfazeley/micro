@@ -28,7 +28,7 @@ app.use(passport.session());
 /**
  * Serve static files in public directory
  */
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('../public'));
 app.use(express.urlencoded({ extended:false }));
 
 // To parse JSON data
