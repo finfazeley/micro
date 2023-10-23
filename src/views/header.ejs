@@ -8,7 +8,7 @@
         <% } else { %>
           <% if(login && page.onLogIn) { %>
             <% if(page.url === '/logout') { %>
-              <li class="login">Logged in as: <%= user %>  </li>
+              <!-- <li class="login">Logged in as: <%= user %>  </li> -->
             <% } %>
             <li><a href=<%= page.url %>><%= page.name %></a></li>
           <% } else if (!login && page.onLogOut) { %>
