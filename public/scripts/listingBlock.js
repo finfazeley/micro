@@ -1,19 +1,25 @@
-const url = "http://localhost:5001";
-// const url =  "http://tradecars.onrender.com";
+// const url = "http://localhost:5001";
+// // const url =  "http://tradecars.onrender.com";
+var url = "https://tradecars-micro.onrender.com"
 
 const sortByYear = async (order) => {
+  console.log("sending request");
   const response = await fetch(url+"/api/year?order="+order);
   const json = await response.json();
   rebuildList(json);
 }
 
 const sortByPrice = async (order) => {
+  console.log("sending request");
+
   const response = await fetch(url+"/api/price?order="+order);
   const json = await response.json();
   rebuildList(json);
 }
 
 const sortByMileage = async (order) => {
+  console.log("sending request");
+
   const response = await fetch(url+"/api/mileage?order="+order);
   const json = await response.json();
   rebuildList(json);

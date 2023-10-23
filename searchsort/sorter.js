@@ -1,7 +1,10 @@
 const CarListing = require("./schemas/CarListing");
 
 exports.sortByYear = async(req, res) => {
+  console.log(CarListing.find());
   const order = (req.query.order === "asc") ? 1 : -1;
+  console.log(order);
+
   var listings = await CarListing.find().cursor().toArray();
   listings.sort((a, b) => {
     if (a.year > b.year) {
@@ -14,7 +17,9 @@ exports.sortByYear = async(req, res) => {
 }
 
 exports.sortByPrice = async(req, res) => {
+  console.log(CarListing.find());
   const order = (req.query.order === "asc") ? 1 : -1;
+  console.log(order);
   var listings = await CarListing.find().cursor().toArray();
   listings.sort((a, b) => {
     if (a.price > b.price) {
@@ -27,7 +32,9 @@ exports.sortByPrice = async(req, res) => {
 }
 
 exports.sortByMileage = async(req, res) => {
+  console.log(CarListing.find());
   const order = (req.query.order === "asc") ? 1 : -1;
+  console.log(order);
   var listings = await CarListing.find().cursor().toArray();
   listings.sort((a, b) => {
     if (a.mileage > b.mileage) {
