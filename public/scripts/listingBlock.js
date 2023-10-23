@@ -1,17 +1,20 @@
+const url = "http://localhost:5001";
+// const url =  "http://tradecars.onrender.com";
+
 const sortByYear = async (order) => {
-  const response = await fetch("http://localhost:5001/api/year?order="+order);
+  const response = await fetch(url+"/api/year?order="+order);
   const json = await response.json();
   rebuildList(json);
 }
 
 const sortByPrice = async (order) => {
-  const response = await fetch("http://localhost:5001/api/price?order="+order);
+  const response = await fetch(url+"/api/price?order="+order);
   const json = await response.json();
   rebuildList(json);
 }
 
 const sortByMileage = async (order) => {
-  const response = await fetch("http://localhost:5001/api/mileage?order="+order);
+  const response = await fetch(url+"/api/mileage?order="+order);
   const json = await response.json();
   rebuildList(json);
 }
