@@ -28,7 +28,9 @@ app.use(passport.session());
 /**
  * Serve static files in public directory
  */
-app.use(express.static('../public'));
+app.use(express.static('../public', {
+  maxAge:'60000'
+}));
 app.use(express.urlencoded({ extended:false }));
 
 // To parse JSON data

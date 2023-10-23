@@ -10,6 +10,15 @@ const routes = require('./routes');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  const period = 60 * 5 
+  if (req.method == 'GET') {
+    res.set('Cache-control', `public, max-age=${period}`)
+  } else {
+    res.set('Cache-control', `no-store`)
+  }
+  next()
+});
 app.use('/api', routes);
 
 const PORT = 5001;

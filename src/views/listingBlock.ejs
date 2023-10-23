@@ -2,6 +2,10 @@
   <div class="col col-8">
     <div class="listings-container" id="listings">
 
+      <% if (listings.length == 0) { %>
+        <h2>Could not get listings :(</h2>
+      <% } else { %>
+
       <% for (var car in listings) { %>
         <a class="listing-item" href="<%= '/product/'+listings[car].id %>">
           <img
@@ -16,7 +20,7 @@
           <li>$<%= listings[car].price %>
           </li>
         </a>
-        <% } %>
+        <% }} %>
 
     </div>
   </div>

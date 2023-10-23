@@ -49,24 +49,19 @@ exports.getAllListings = async () => {
   if (listingCache.valid && new Date().getTime() - listingCache.lastUpdate < 300000) {
     return listingCache.listings;
   }
-  const listings = await CarListing.find().limit(20).cursor().toArray();
-  var newListings = [];
-  for await (const list of listings) {
-      newList = {
-        id: list._id.toHexString(),
-        user: list.user.name,
-        make: list.make,
-        model: list.model,
-        year: list.year,
-        mileage: list.mileage,
-        description: list.description,
-        price: list.price
-      }
-      newListings.push(newList)
-  }
-  listingCache.listings = newListings;
-  listingCache.valid = true;
-  listingCache.lastUpdate = new Date().getTime();
-  return newListings;
+  const url = "https://tradecars-micro.onrender.com"
+  const listings = await fetch(url + "/api/mileage?order=asc")
+  .then((response) => {
+    const json = response.json();
+    newListings = json;
+    listingCache.listings = newListings;
+    listingCache.valid = true;
+    listingCache.lastUpdate = new Date().getTime();
+    return newListings;
+  })
+  .catch((error) => {
+    return [];
+  })
+  return listings;
 }
 
