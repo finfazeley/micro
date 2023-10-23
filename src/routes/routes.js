@@ -16,7 +16,7 @@ router.get('/recommended', checkLogin, recController.getRecommended);
 
 // email password reset
 router.get('/resetPassword', checkLogin, accountController.getReset)
-router.post('/resetPassword', checkLogin, accountController.postReset)
+// router.post('/resetPassword', checkLogin, accountController.postReset)
 router.get('/changePassword/:userId/:token', checkLogin, accountController.changePassword)
 router.post('/changePassword/confirm', checkLogin, accountController.confirmPassword)
 
