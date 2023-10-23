@@ -5,7 +5,12 @@ exports.sortByYear = async(req, res) => {
   const order = (req.query.order === "asc") ? 1 : -1;
   console.log(order);
 
-  var listings = await CarListing.find().cursor().toArray();
+  const cursor = CarListing.find().cursor();
+  const listings = [];
+  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+      listings.push(doc);
+  }
+
   listings.sort((a, b) => {
     if (a.year > b.year) {
       return 1*order;
