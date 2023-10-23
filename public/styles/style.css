@@ -145,6 +145,14 @@ img {
   background-color: #d43945;
   display: inline-block;
 }
+.button-3 {
+  color: #ffffff;
+  margin-top: 10px;
+  padding: 14px 22px;
+  border-radius: 3px;
+  background-color: #2f2f2f;
+  display: inline-block;
+}
 
 /* .header li a:hover {
   background-color: #a1a1a1;
@@ -307,7 +315,7 @@ label {
 }
 
 select, input[type="range"] {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #000;

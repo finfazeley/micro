@@ -3,6 +3,12 @@ const CarListing = require('../models/CarListing');
 const findUser =  require('../utils/findUserById');
 const navPages = require('../utils/navPages');
 
+var listingCache = {
+  listings: [],
+  lastUpdate: 0,
+  valid: false
+}
+
 exports.addcarlisting = async (req, res) => {
   try {
     const {make, model, year, mileage, description, price} = req.body;
@@ -14,6 +20,7 @@ exports.addcarlisting = async (req, res) => {
     }
     const car = new CarListing({user, make, model, year, mileage, description, price});
     await car.save();
+    listingCache.valid = false;
     return res.redirect('/');
   } catch (err) {
     res.status(500).json({message: err.message});
@@ -39,7 +46,10 @@ exports.getSellPage = (req, res, next) => {
 // Utility Functions
 
 exports.getAllListings = async () => {
-  const listings = await CarListing.find().cursor().toArray();
+  if (listingCache.valid && new Date().getTime() - listingCache.lastUpdate < 300000) {
+    return listingCache.listings;
+  }
+  const listings = await CarListing.find().limit(20).cursor().toArray();
   var newListings = [];
   for await (const list of listings) {
       newList = {
@@ -54,7 +64,9 @@ exports.getAllListings = async () => {
       }
       newListings.push(newList)
   }
-  //console.log(newListings);
+  listingCache.listings = newListings;
+  listingCache.valid = true;
+  listingCache.lastUpdate = new Date().getTime();
   return newListings;
 }
 

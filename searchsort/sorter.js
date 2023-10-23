@@ -1,16 +1,14 @@
 const CarListing = require("./schemas/CarListing");
 
+var listingCache = {
+  listings: [],
+  lastUpdate: 0,
+  valid: false
+}
+
 exports.sortByYear = async(req, res) => {
-  // console.log(CarListing.find());
   const order = (req.query.order === "asc") ? 1 : -1;
-  // console.log(order);
-
-  const cursor = CarListing.find().cursor();
-  const listings = [];
-  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-      listings.push(doc);
-  }
-
+  const listings = await getListings();
   listings.sort((a, b) => {
     if (a.year > b.year) {
       return 1*order;
@@ -23,13 +21,7 @@ exports.sortByYear = async(req, res) => {
 
 exports.sortByPrice = async(req, res) => {
   const order = (req.query.order === "asc") ? 1 : -1;
-  const cursor = CarListing.find().cursor();
-  const listings = [];
-  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-    listings.push(doc);
-  }
-
-  //var listings = await CarListing.find().cursor().toArray();
+  const listings = await getListings();
   listings.sort((a, b) => {
     if (a.price > b.price) {
       return 1*order;
@@ -42,12 +34,7 @@ exports.sortByPrice = async(req, res) => {
 
 exports.sortByMileage = async(req, res) => {
   const order = (req.query.order === "asc") ? 1 : -1;
-  const cursor = CarListing.find().cursor();
-  const listings = [];
-  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-    listings.push(doc);
-  }
-  //var listings = await CarListing.find().cursor().toArray();
+  const listings = await getListings();
   listings.sort((a, b) => {
     if (a.mileage > b.mileage) {
       return 1*order;
@@ -56,6 +43,21 @@ exports.sortByMileage = async(req, res) => {
   });
   var newListings = buildListings(listings);
   res.send(JSON.stringify(newListings));
+}
+
+const getListings = async () => {
+  if (listingCache.valid && new Date().getTime() - listingCache.lastUpdate < 300000) {
+    return listingCache.listings;
+  }
+  const cursor = CarListing.find().cursor();
+  const listings = [];
+  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+    listings.push(doc);
+  }
+  listingCache.listings = listings;
+  listingCache.lastUpdate = new Date().getTime();
+  listingCache.valid = true;
+  return listings;
 }
 
 const buildListings = (listings) => {
